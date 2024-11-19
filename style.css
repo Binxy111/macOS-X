@@ -48,3 +48,10 @@ ul.osx-dock li span {
  ul.osx-dock li:hover span {
  display: block;
 }
+
+.test {
+  background:gray;
+  width:200px;
+  height:200px;
+  cursor:url('http://upload.wikimedia.org/wikipedia/commons/d/de/POL_apple.jpg');
+}
