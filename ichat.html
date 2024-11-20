@@ -1,8 +1,105 @@
-<div id="chat">
-	<div id="chat-messages">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <!-- Chat Room -->
+    <div id="chat-room" class="container">
+        <h1 class="text-center">Chat Room</h1>
+        <div id="chat-messages" class="card mb-3">
+            <div class="card-body">
+                <div id="message-list"></div>
+            </div>
+        </div>
+        <form id="chat-form">
+            <div class="form-group">
+                <input type="text" class="form-control" id="message-input" placeholder="Type your message...">
+            </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+    </div>
 
-	<form id="chat-form" method="post">
-		<input type="text" name="message" placeholder="Enter a message..." maxlength="500" autocomplete="off">
-		<button type="submit">Send</button>
- 	</form>
-</div>
+    <!-- Bootstrap & jQuery JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Chat Room JS -->
+    <script>
+        $(document).ready(function() {
+            // Array to store chat messages
+            let messages = [];
+
+            // Function to display messages
+            function displayMessages() {
+                let messageList = $("#message-list");
+                messageList.empty();
+
+                messages.forEach(function(message) {
+                    let messageItem = $("<div>").addClass("message-item");
+                    let sender = $("<span>").addClass("message-sender").text(message.sender);
+                    let content = $("<span>").addClass("message-content").text(message.content);
+
+                    messageItem.append(sender);
+                    messageItem.append(content);
+                    messageList.append(messageItem);
+                });
+            }
+
+            // Function to handle form submission
+            $("#chat-form").submit(function(e) {
+                e.preventDefault();
+
+                let messageInput = $("#message-input");
+                let messageContent = messageInput.val();
+
+                if (messageContent !== "") {
+                    let message = {
+                        sender: "User",
+                        content: messageContent
+                    };
+
+                    messages.push(message);
+                    displayMessages();
+
+                    messageInput.val("");
+                }
+            });
+        });
+    </script>
+
+    <!-- Chat Room CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #chat-room {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        #chat-messages {
+            height: 300px;
+            overflow-y: scroll;
+        }
+
+        .message-item {
+            margin-bottom: 10px;
+        }
+
+        .message-sender {
+            font-weight: bold;
+        }
+
+        .message-content {
+            margin-left: 10px;
+        }
+    </style>
+</body>
+</html>
