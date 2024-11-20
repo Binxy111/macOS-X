@@ -498,3 +498,21 @@ html{
     text-shadow: 1px 1px 1px #171717;
     white-space: nowrap;
 }
+#dock li img {
+  width: 64px;
+  height: 64px;
+  -webkit-box-reflect: below 2px
+		    -webkit-gradient(linear, left top, left bottom, from(transparent),
+		    color-stop(0.7, transparent), to(rgba(255,255,255,.5))); /* reflection is supported by webkit only */
+  -webkit-transition: all 0.3s;
+  -webkit-transform-origin: 50% 100%;
+}
+#dock li:hover img { 
+  -webkit-transform: scale(2);
+  margin: 0 2em;
+}
+#dock li:hover + li img,
+#dock li.prev img {
+  -webkit-transform: scale(1.5);
+  margin: 0 1.5em;
+}
