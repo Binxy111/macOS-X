@@ -215,3 +215,70 @@ input:hover {
   outline: rgb(200,200,200);
   border-color: rgb(200,200,200);
 }
+*{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html{
+    font-size: 10px;
+}
+
+.window{
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 100dvh;
+    background-image: url('../images/macos-bg.jpg');
+}
+
+.navbar{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0.5rem;
+    margin-block-end: 1.5rem;
+    margin-inline: 1.5rem;
+    background: rgba(83, 83, 83, 0.25);
+    backdrop-filter: blur(13px);
+    -webkit-backdrop-filter: blur(13px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+    transition: all .3s ease-in-out;
+}
+
+.navbar__link{
+    --icon-size: 4rem;
+    --active-icon-size: 6rem;
+    display: inline-block;
+    background-color: transparent;
+    border: 0;
+    padding: 0.5rem;
+    text-decoration: none;
+    transition: all .2s ease-in-out;
+    cursor: pointer;
+}
+
+.navbar__link__image{
+    display: block;
+    font-size: var(--icon-size);
+    width: 1em;
+    height: 1em;
+    transition: all .2s ease-in-out;
+}
+
+.navbar__link:is(:hover, :focus-visible){
+    --icon-size: var(--active-icon-size);
+    margin-block-start: calc((var(--active-icon-size) / 2) * -1);
+}
+
+.navbar__link:is(:hover, :focus-visible) + .navbar__link,
+.navbar__link:has(+ .navbar__link:is(:hover, :focus-visible))
+{
+    --icon-size: calc(var(--active-icon-size) / 1.2);
+    margin-block-start: calc((var(--active-icon-size) / 4) * -1);
+}
